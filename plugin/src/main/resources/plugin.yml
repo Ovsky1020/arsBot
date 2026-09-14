@@ -1,0 +1,34 @@
+name: ArsBot
+version: '${version}'
+main: com.arsbot.ArsBotPlugin
+api-version: '1.21'
+description: Panel de administración: información de jugadores en el juego y puente con un bot de Discord.
+author: arsBot
+website: https://github.com/Ovsky1020/arsBot
+
+commands:
+  arsbot:
+    description: Comandos de administración de ArsBot.
+    aliases: [ars, arsadmin, admininfo]
+    usage: /<command> <info|inv|echest|armor|hand|effects|where|players|status|view|reload|help>
+    permission: arsbot.use
+
+permissions:
+  arsbot.use:
+    description: Permite usar /arsbot (cada subcomando tiene además su permiso específico).
+    default: op
+  arsbot.info:
+    description: Ver la ficha completa de un jugador.
+    default: op
+  arsbot.inventory:
+    description: Ver inventario, cofre de ender, armadura y mano de un jugador.
+    default: op
+  arsbot.location:
+    description: Ver coordenadas, mundo y bioma de un jugador.
+    default: op
+  arsbot.status:
+    description: Ver estado del servidor y lista de jugadores conectados.
+    default: op
+  arsbot.reload:
+    description: Recargar la configuración del plugin.
+    default: op

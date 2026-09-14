@@ -1,0 +1,19 @@
+{
+  "name": "arsbot-discord",
+  "version": "1.0.0",
+  "description": "Bot de Discord que se conecta al plugin ArsBot (Paper) para administrar tu servidor de Minecraft desde Discord.",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node test/bridge.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5"
+  }
+}

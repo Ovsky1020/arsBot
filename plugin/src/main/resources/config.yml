@@ -1,0 +1,17 @@
+# =======================================================
+#  ArsBot — Configuración del plugin
+# =======================================================
+
+# Servidor socket al que se conecta el bot de Discord.
+socket:
+  enabled: true
+  # IP a la que escuchar:
+  #   - 127.0.0.1  -> solo local (bot de Discord en la MISMA máquina). Recomendado.
+  #   - 0.0.0.0    -> todas las interfaces (bot en otra máquina). ¡Protege el puerto con firewall!
+  host: "127.0.0.1"
+  port: 25590
+  # Token secreto compartido. DEBE coincidir con el token del bot de Discord.
+  # Usa una cadena larga y aleatoria.
+  token: "cambia-este-token-secreto"
+  # Máximo de conexiones simultáneas del bot.
+  max-connections: 10

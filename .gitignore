@@ -1,0 +1,16 @@
+# Bot de Discord
+discord-bot/node_modules/
+discord-bot/.env
+discord-bot/*.log
+
+# Build del plugin (Gradle)
+plugin/build/
+plugin/.gradle/
+plugin/.idea/
+plugin/*.iml
+plugin/out/
+
+# General
+.DS_Store
+*.log
+*.class
