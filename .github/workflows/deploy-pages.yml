@@ -1,11 +1,10 @@
 name: Publicar en GitHub Pages
 
+# Pages solo puede desplegar desde la rama por defecto (main).
 on:
   push:
     branches:
       - main
-      # La rama de trabajo de la sesión; puedes borrar estas dos líneas al mergear.
-      - 'arena/**'
   workflow_dispatch:
 
 permissions:
