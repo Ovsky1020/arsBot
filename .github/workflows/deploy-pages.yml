@@ -21,6 +21,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Activa Pages la primera vez (si ya lo está, GitHub responde 409 y seguimos)
+      - name: Activar GitHub Pages
+        run: |
+          code=$(curl -s -o /tmp/pages.json -w "%{http_code}" \
+            -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages" \
+            -d '{"build_type":"workflow"}')
+          echo "Respuesta de la API de Pages: HTTP $code (409 = ya estaba activado)"
+          cat /tmp/pages.json
+
       - name: Descargar el repo
         uses: actions/checkout@v4
 
@@ -54,18 +66,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # Activa Pages la primera vez (si ya lo está, GitHub responde 409 y seguimos)
-      - name: Activar GitHub Pages
-        run: |
-          code=$(curl -s -o /tmp/pages.json -w "%{http_code}" \
-            -X POST \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${{ github.repository }}/pages" \
-            -d '{"build_type":"workflow"}')
-          echo "Respuesta de la API de Pages: HTTP $code (409 = ya estaba activado)"
-          cat /tmp/pages.json
-
       - name: Desplegar
         id: deployment
         uses: actions/deploy-pages@v4
