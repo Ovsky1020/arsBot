@@ -1,9 +1,19 @@
+declare const process: { env: Record<string, string | undefined> }
+
+/**
+ * Ruta base de la app. En local es "/". Al publicar en GitHub Pages el repo se
+ * sirve en https://<usuario>.github.io/<repo>/, así que en el workflow de
+ * despliegue se define BASE_PATH=/<repo>/
+ */
+const base = process.env.BASE_PATH ?? '/'
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  base,
   plugins: [
     react(),
     tailwindcss(),
@@ -15,7 +25,8 @@ export default defineConfig({
         short_name: 'arsBot',
         description: 'Horario de clases, tareas y notas. Tu agenda estilo Notion en el móvil.',
         lang: 'es',
-        start_url: '/',
+        start_url: base,
+        scope: base,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#191919',
@@ -28,7 +39,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
-        navigateFallback: '/index.html',
+        navigateFallback: 'index.html',
       },
       devOptions: { enabled: false },
     }),
