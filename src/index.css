@@ -1,0 +1,142 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f7f6f3;
+  --surface: #ffffff;
+  --surface-2: #f1f0ed;
+  --line: #e4e2dd;
+  --text: #37352f;
+  --muted: #8b8780;
+  --brand: #2f6df6;
+  --brand-soft: #e8f0fe;
+  --danger: #e5484d;
+  --ok: #2da44e;
+}
+
+.dark {
+  --bg: #191919;
+  --surface: #202020;
+  --surface-2: #2a2a2a;
+  --line: #313131;
+  --text: #e9e9e7;
+  --muted: #979a9f;
+  --brand: #6b9bff;
+  --brand-soft: #1e2740;
+  --danger: #ff6369;
+  --ok: #4cc38a;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-danger: var(--danger);
+  --color-ok: var(--ok);
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+#root {
+  min-height: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+}
+
+/* Scroll discreto */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 99px;
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pop {
+  0% {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-sheet {
+  animation: sheet-up 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.animate-fade {
+  animation: fade-in 0.18s ease-out;
+}
+.animate-pop {
+  animation: pop 0.18s ease-out;
+}
+
+.safe-bottom {
+  padding-bottom: max(env(safe-area-inset-bottom), 0px);
+}
+.safe-top {
+  padding-top: max(env(safe-area-inset-top), 0px);
+}
